@@ -2,14 +2,14 @@
 import { mapGetters } from 'vuex';
 export default {
   computed: {
-    ...mapGetters('core', ['goods']),
+    ...mapGetters('core', ['groups']),
   },
 };
 </script>
 
 <template>
   <div class="page page-index">
-    {{ goods }}
+    {{ groups }}
   </div>
 </template>
 
