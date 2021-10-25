@@ -3,5 +3,5 @@ import names from './names.json';
 export default () => ({
   data,
   names,
-  popup: '',
+  rate: 70,
 });

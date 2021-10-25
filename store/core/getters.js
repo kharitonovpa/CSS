@@ -6,7 +6,7 @@ export default {
         {
           id: item.T,
           groupId: item.G,
-          priceDollar: item.C,
+          price: item.C * state.rate,
           count: item.P,
           name: state.names[item.G].B[item.T].N,
         },
@@ -16,8 +16,11 @@ export default {
   groups: (state) => {
     const res = [];
     for (const key in state.names) {
-      res.push({ id: key, name: state.names[key].G });
+      res.push({ id: +key, name: state.names[key].G });
     }
     return res;
+  },
+  getGoodsByGroupId: (state, getters) => (id) => {
+    return getters.goods.filter((item) => item.groupId === id);
   },
 };
