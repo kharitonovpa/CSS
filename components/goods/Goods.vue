@@ -1,5 +1,5 @@
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import Spoiler from '../common/Spoiler';
 import GoodsItem from './GoodsItem';
 export default {
@@ -7,10 +7,19 @@ export default {
   components: { GoodsItem, Spoiler },
   computed: {
     ...mapGetters('core', ['groups', 'getGoodsByGroupId']),
+    ...mapState('cart', ['items']),
   },
 
   methods: {
-    ...mapMutations('cart', ['addItem']),
+    ...mapMutations('cart', ['addItem', 'setItemCountInCart']),
+    onGoodClick(good) {
+      const exist = this.items.find((item) => item.id === good.id);
+      if (exist) {
+        if (exist.countInCart < good.count) this.setItemCountInCart({ id: good.id, value: exist.countInCart + 1 });
+      } else {
+        this.addItem(good);
+      }
+    },
   },
 };
 </script>
@@ -27,7 +36,7 @@ export default {
             :price="good.price"
             :count="+good.count"
             class="goods__item"
-            @click.native="addItem(good)"
+            @click.native="onGoodClick(good)"
           />
         </div>
       </Spoiler>

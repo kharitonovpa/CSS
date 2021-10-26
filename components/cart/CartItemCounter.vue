@@ -6,11 +6,20 @@ export default {
       type: Number,
       default: 1,
     },
+    countInCart: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
       value: 1,
     };
+  },
+  watch: {
+    countInCart(newVal) {
+      this.value = newVal;
+    },
   },
   methods: {
     onInput() {

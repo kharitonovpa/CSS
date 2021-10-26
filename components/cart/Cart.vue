@@ -1,11 +1,12 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import CartItem from './CartItem';
 export default {
   name: 'Cart',
   components: { CartItem },
   computed: {
     ...mapState('cart', ['items']),
+    ...mapGetters('cart', ['total']),
   },
 };
 </script>
@@ -27,11 +28,12 @@ export default {
             :key="item.id"
             :name="item.name"
             :price="item.price"
+            :count-in-cart="item.countInCart"
             :count="item.count"
             class="cart__item"
           />
         </div>
-        <div class="cart__total"></div>
+        <div class="cart__total">{{ total }}</div>
       </div>
       <div v-else class="cart__empty">Добавьте товар в корзину</div>
     </div>
