@@ -29,7 +29,6 @@ export default {
   methods: {
     ...mapMutations('cart', ['setItemCountInCart']),
     setCountItem(count) {
-      console.log('count', count);
       this.setItemCountInCart({ id: this.id, value: count });
     },
   },
