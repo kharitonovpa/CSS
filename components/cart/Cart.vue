@@ -33,7 +33,7 @@ export default {
             class="cart__item"
           />
         </div>
-        <div class="cart__total">{{ total }}</div>
+        <div class="cart__total">Общая сумма: {{ total.toFixed(2) }}&nbsp;&#8381;</div>
       </div>
       <div v-else class="cart__empty">Добавьте товар в корзину</div>
     </div>
@@ -54,6 +54,7 @@ export default {
     display: flex;
     align-items: center;
     // text-align: center;
+    margin-bottom: em(30px);
   }
   &__col {
     &_1 {
@@ -68,6 +69,16 @@ export default {
   }
   &__empty {
     align-items: center;
+  }
+  &__total {
+    font-weight: 700;
+    font-size: em(22px);
+    margin-top: em(20px, 22px);
+  }
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: em(26px);
+    }
   }
 }
 </style>

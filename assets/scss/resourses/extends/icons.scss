@@ -1,0 +1,6 @@
+%icon-arrow {
+  width: em(14px);
+  height: em(10px);
+  @extend %background-contain;
+  background-image: url('~assets/svg/icon-arrow.svg');
+}

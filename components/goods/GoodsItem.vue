@@ -15,11 +15,24 @@ export default {
       default: 0,
     },
   },
+  data() {
+    return {
+      changeClass: '',
+    };
+  },
+  watch: {
+    price(newVal, oldVal) {
+      this.changeClass = newVal > oldVal ? 'red' : 'green';
+      setTimeout(() => {
+        this.changeClass = '';
+      }, 300);
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="goods-item">
+  <div :class="changeClass ? `goods-item_${changeClass}` : ''" class="goods-item">
     <div class="goods-item__label">{{ `${name}(${count})` }}</div>
     <div class="goods-item__price">{{ price.toFixed(2) }}&nbsp;&#8381;</div>
   </div>
@@ -30,6 +43,12 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
+  &_red {
+    background-color: rgba(red, 0.1);
+  }
+  &_green {
+    background-color: rgba(green, 0.1);
+  }
   &:hover {
     text-decoration: underline;
     background-color: rgba(blue, 0.03);

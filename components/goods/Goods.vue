@@ -27,7 +27,13 @@ export default {
 <template>
   <div class="goods">
     <div class="goods__inner">
-      <Spoiler v-for="group in groups" :key="group.id" :title="group.name" class="goods__spoiler">
+      <Spoiler
+        v-for="group in groups"
+        v-if="getGoodsByGroupId(group.id) && getGoodsByGroupId(group.id).length"
+        :key="group.id"
+        :title="group.name"
+        class="goods__spoiler"
+      >
         <div class="goods__list">
           <GoodsItem
             v-for="good in getGoodsByGroupId(group.id)"

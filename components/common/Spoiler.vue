@@ -37,6 +37,11 @@ export default {
 
 <style lang="scss">
 .spoiler {
+  &.is_active {
+    .spoiler__header:after {
+      transform: scaleY(-1);
+    }
+  }
   &__header {
     background-color: antiquewhite;
     font-size: em(20px);
@@ -44,6 +49,18 @@ export default {
     cursor: pointer;
     user-select: none;
     line-height: 1.4;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      font-size: em(16px, 20px);
+      right: em(20px);
+      @extend %icon-arrow;
+      top: 50%;
+      margin-top: em(-5px);
+      transition: transform 0.3s;
+      transform: scaleY(1);
+    }
   }
 }
 </style>

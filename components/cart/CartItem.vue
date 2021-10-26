@@ -52,7 +52,6 @@ export default {
 <style lang="scss">
 .cart-item {
   display: flex;
-  align-items: center;
   &__col {
     &_1 {
       width: 50%;
