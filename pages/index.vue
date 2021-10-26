@@ -1,13 +1,39 @@
 <script>
+import { mapMutations, mapState } from 'vuex';
 import Goods from '../components/goods/Goods';
 import Cart from '../components/cart/Cart';
 export default {
   components: { Cart, Goods },
+  data() {
+    return {
+      interval: null,
+    };
+  },
+  computed: {
+    ...mapState('core', ['data']),
+  },
+  async mounted() {
+    await this.refresh();
+    this.interval = setInterval(() => {
+      this.refresh();
+    }, 15000);
+  },
+  methods: {
+    ...mapMutations('core', ['setData', 'setRate']),
+    async refresh() {
+      this.setRate(20 + Math.random() * (80 + 1 - 20));
+      await fetch('/data.json')
+        .then((response) => response.json())
+        .then((data) => {
+          this.setData(data);
+        });
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="page page-index">
+  <div v-if="data" class="page page-index">
     <Goods class="page-index__goods" />
     <Cart class="page-index__cart" />
   </div>

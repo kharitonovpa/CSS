@@ -1,7 +1,7 @@
-import data from './data.json';
+// import data from './data.json';
 import names from './names.json';
 export default () => ({
-  data,
+  data: null,
   names,
   rate: 70,
 });
